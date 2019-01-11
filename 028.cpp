@@ -8,17 +8,14 @@ public:
 		res[0]=-1;
 		for(int i=1; i < s.length(); i++){
 			int j = i-1;
-			while(s[i] != s[res[j]+1]){
+			while(j>=0 && s[i] != s[res[j]+1]){
 				j = res[j];
-				if(j<0){
-					j = 0;
-					break;
-				}
 			}
-			res[i] = res[j];
+			if(j==-1)
+				res[i] = -1;
+			else
+				res[i] = res[j]+1;
 		}
-        for(int i=0; i<s.length(); i++)
-            std::cout<<res[i]<<" ";
 		return res;
 	}
     int strStr(std::string haystack, std::string needle) {
@@ -33,7 +30,7 @@ public:
 			}else if(j==0){
 				i++;
 			}else{
-				j = next[j];
+				j = next[j-1]+1;
 			}
 			if(j==needle.length())
 				return i-j;
