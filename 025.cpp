@@ -10,33 +10,33 @@ struct ListNode{
 
 class Solution {
 public:
-	ListNode* rotate(ListNode* head, int k){
-		if(k<=1) return head;
+    ListNode* reverseKGroupI(ListNode* head, int k) {
+		if(k<1||!head) return head;
+		if(k == 1) return head;
 		ListNode* tail = head;
 		for(int i=0; i<k-1; i++){
 			tail = tail->next;
 			if(!tail) return head;
 		}
 		ListNode* prev = head->next;
+		head->next = tail->next;
 		tail->next = head;
-		return rotate(head->next, --k);
+		return reverseKGroupI(prev, k-1);
 	}
     ListNode* reverseKGroup(ListNode* head, int k) {
-		if(k<=1||!head) return head;
+		if(k<1||!head) return head;
+		if(k == 1) return head;
 		ListNode* tail = head;
 		for(int i=0; i<k-1; i++){
 			tail = tail->next;
 			if(!tail) return head;
 		}
+		//std::cout<<"head: "<<head->val<<std::endl;
+		//std::cout<<"tail: "<<tail->val<<std::endl;
 		ListNode* prev = head->next;
 		head->next = reverseKGroup(tail->next, k);
 		tail->next = head;
-		return prev;
-
-		ListNode* tail;
-		ListNode* current = tail;
-		ListNode* prev;
-		current->next = prev;
+		return reverseKGroupI(prev, k-1);
 
     }
 };
