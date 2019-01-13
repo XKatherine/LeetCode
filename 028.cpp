@@ -3,6 +3,25 @@
 
 class Solution {
 public:
+    int strStr(std::string haystack, std::string needle) {
+		if( needle.size() == 0 ) return 0;
+
+		int i = 0, j = 0; // i is the index of haystack and j is the index of needle
+		while( i < haystack.length()){
+			if( haystack[i] == needle[j] ){
+				++ i;
+				if (++j == needle.length())
+					return i-j;
+			}else if( j == 0 ){
+				++ i;
+			}else{
+				i -= j-1;
+				j = 0;
+			}
+		}
+		return -1;
+	}
+	/*KMP by K
 	int* findNext(std::string s){
 		int* res = new int[s.length()];
 		res[0]=-1;
@@ -37,6 +56,7 @@ public:
 		}
 		return -1;
     }
+	*/
 };
 
 int main(){
