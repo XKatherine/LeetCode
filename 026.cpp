@@ -6,6 +6,19 @@
 class Solution {
 public:
     int removeDuplicates(std::vector<int>& nums) {
+		nums.resize(unique(nums.begin(),nums.end())-nums.begin());
+		return nums.size();
+	/* Smart Way
+    int removeDuplicates(std::vector<int>& nums) {
+		if(nums.size()==0) return 0;
+		int current = 0;
+		for(int i=0; i<nums.size(); i++)
+			if(nums[i]!=nums[current])
+				nums[++current]=nums[i];
+		return current+1;
+		*/
+	/* Impleted by K
+    int removeDuplicates(std::vector<int>& nums) {
 		if(nums.size()<=1) return nums.size();
 		int i = 1;
 		while(i<nums.size()){
@@ -19,6 +32,7 @@ public:
 				i++;
 		}
 		return nums.size();
+	*/
     }
 };
 
