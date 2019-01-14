@@ -10,6 +10,36 @@ struct ListNode{
 
 class Solution {
 public:
+	void reverse_list(ListNode* head, ListNode* tail) {
+		ListNode* next;
+		while(head){
+			next = head->next;
+			head->next = tail;
+			tail = head;
+			head = next;
+		}
+	}
+
+    ListNode* reverseKGroup(ListNode* head, int k) {
+		if(!head) return head;
+		ListNode dummy(0);
+		dummy.next = head;
+		ListNode* last = &dummy;
+		ListNode* prev = &dummy;
+		while(true){
+			int i = 0;
+			for(; i<k && (last->next); i++) last = last->next;
+			if(i != k) break;
+			ListNode* next = last->next;
+			last->next = nullptr;
+			reverse_list(prev->next, next);
+			next = prev->next;
+			prev->next = last;
+			last = next;
+			prev = next;
+		}
+		return dummy.next;
+	/* Stupid way by K
     ListNode* reverseKGroupI(ListNode* head, int k) {
 		if(k<1||!head) return head;
 		if(k == 1) return head;
@@ -37,6 +67,7 @@ public:
 		head->next = reverseKGroup(tail->next, k);
 		tail->next = head;
 		return reverseKGroupI(prev, k-1);
+		*/
 
     }
 };
