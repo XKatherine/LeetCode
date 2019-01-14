@@ -11,6 +11,14 @@ struct ListNode {
 class Solution {
 public:
     ListNode* swapPairs(ListNode* head) {
+		if(!head || !head->next) return head;
+		ListNode* next = head->next;
+		head->next = swapPairs(next->next);
+		next->next = head;
+		return next;
+	}
+	/*
+    ListNode* swapPairs(ListNode* head) {
 		ListNode dummy(0);
 		dummy.next = head;
 		ListNode* p = &dummy;
@@ -23,6 +31,7 @@ public:
 		}
 		return dummy.next;
     }
+	*/
 };
 
 int main(){
@@ -66,3 +75,4 @@ public:
         return next;
     }
 };
+*/
