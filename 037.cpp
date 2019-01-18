@@ -13,12 +13,10 @@ public:
 			for(int j=0; j<9; j++){
 				unordered_map<char> can;
 				if(board[i][j]!='.')
+
 					break;
 				for(auto c : board[i])
 					if(c!='c')
-
-
-
 
 
     void solveSudoku(vector<vector<char>>& board) {
