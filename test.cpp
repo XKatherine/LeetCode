@@ -26,6 +26,6 @@ int main(){
 //	for(auto i : v)
 //		cout<< i << " ";
 //	//cout<<endl;
-	string s = "*";
-	cout<<(s.substr(1)=="")<<endl;
+	int s = INT_MAX;
+	cout<<s;
 }
