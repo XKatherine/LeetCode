@@ -29,9 +29,9 @@ int main(){
 //	//cout<<endl;
 	int s = INT_MAX;
 	//cout<<s;
-	unordered_map<int, int> h;
-	h[1] = 2;
-	cout<<h[1]<<endl;
-
-
+//	unordered_map<int, int> h;
+//	h[1] = 2;
+//	cout<<h[1]<<endl;
+	double x = 2;
+	cout<<1/x<<endl;
 }
