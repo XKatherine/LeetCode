@@ -2,6 +2,7 @@
 #include<iostream>
 #include<algorithm>
 #include<string>
+#include<unordered_map>
 using namespace std;
 
 int main(){
@@ -27,5 +28,10 @@ int main(){
 //		cout<< i << " ";
 //	//cout<<endl;
 	int s = INT_MAX;
-	cout<<s;
+	//cout<<s;
+	unordered_map<int, int> h;
+	h[1] = 2;
+	cout<<h[1]<<endl;
+
+
 }
