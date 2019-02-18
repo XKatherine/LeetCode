@@ -2,34 +2,36 @@
 #include<string>
 #include<vector>
 #include<sstream>
+#include<algorithm>
 using namespace std;
 
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
-		int start = 0, sto = nums[0], cur = 0;
-		
+		if(nums.size() == 1) return nums[0];
+
+		int last = nums[0];
+		int maxi = nums[0];
 		for(int i = 1; i < nums.size(); i++){
-			if(nums[start] < 0 && nums[i] > nums[start]){
-				start = i;
-				sto = nums[start];
-			}else if(nums[i] < 0){
-				cur += nums[i];
-				if(cur + sto < 0){
-					start = i;
-					sto = nums[i];
-					cur = 0;
-				}if(cur > 0){
-					sto += cur;
-					cur = 0;
-				}
-			}else{
-				sto += nums[i];
+			/*
+			if(last >= 0 && nums[i] >= 0){
+				last += nums[i];
+				maxi = max(maxi, last);
+			}else if(last <0 && nums[i] >= 0){
+				last = nums[i];
+				maxi = max(maxi, last);
+			}else if(last >=0 && nums[i] < 0){
+				last += nums[i];
+			}else if(last < 0 && nums[i] < 0){
+				last = nums[i];
+				maxi = max(maxi, last);
 			}
+			*/
+			if (last >=0) last += nums[i];
+			else last = nums[i];
+			maxi = max(maxi, last);
 		}
-
-		return sto;
-
+		return maxi;
     }
 };
 
