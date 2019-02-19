@@ -14,6 +14,7 @@ struct Interval {
 class Solution {
 public:
 	vector<Interval> insert(vector<Interval>& intervals, Interval newInterval) { 
+		/*
 		vector<Interval> ret;
 		if(intervals.size() == 0) {
 			ret.push_back(newInterval);
@@ -72,23 +73,27 @@ public:
 
 		intervals.erase(intervals.begin()+begin, intervals.begin()+stop+1);
 		intervals.insert(intervals.begin()+begin, add); 
-
-
-
-		/*
-		int begin = newInterval.start, int end;
-		for(int i = 0; i < intervals.size(); ++i){
-			if(intervals[i].end < newInterval.start)
-				ret.push_back(intervals[i]);
-			else if(intervals[i].start < intervals[i].start){
-				begin = intervals[i[
-				end = 
-		
-		}
+		return intervals;
 		*/
 
+		vector<Interval> ret;
+		bool hasPlaced = false;
+		int begin = newInterval.start, stop = newInterval.end;
+		for(int i = 0; i < intervals.size(); ++i){
+			if(hasPlaced || intervals[i].end < newInterval.start)
+				ret.push_back(intervals[i]);
+			else if(intervals[i].start > stop){
+				ret.push_back(Interval(begin, stop));
+				ret.push_back(intervals[i]);
+				hasPlaced = true;
+			} else {
+				begin = min(begin, intervals[i].start);
+				stop = max(stop, intervals[i].end);
+			}
+		}
 
-		return intervals;
+		if(!hasPlaced) ret.push_back(Interval(begin, stop));
+		return ret;
 	}
 };
 
