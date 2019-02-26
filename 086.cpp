@@ -15,6 +15,26 @@ class Solution {
 public:
     ListNode* partition(ListNode* head, int x) {
 		if(!head || !head->next) return head;
+		ListNode* less = head;
+		ListNode* more = head;
+
+		while(less && more){
+			if(more->val < x){
+				swap(less->val, more->val);
+				more = more->next;
+				less = less->next;
+			}else{
+				more = more->next;
+			}
+		}
+		return head;
+	}
+
+
+
+/*
+    ListNode* partition(ListNode* head, int x) {
+		if(!head || !head->next) return head;
 		ListNode dummy(0);
 		dummy.next = head;
 		ListNode* p = head;
@@ -37,6 +57,7 @@ public:
 		}
 		return dummy.next;
     }
+	*/
 };
 
 int main(){
